@@ -7,9 +7,12 @@ export const createProjectSchema = z.object({
     status: z.enum(['active', 'hold', 'completed', 'cancelled']).default('active'),
     priority: z.enum(['low', 'medium', 'high', 'critical']).default('medium'),
     risk_level: z.enum(['low', 'medium', 'high', 'critical']).default('low'),
-    start_date: z.string().min(1, 'Start date is required'),
-    target_date: z.string().min(1, 'Target date is required'),
-    pic: z.string().min(1, 'PIC is required'),
+    start_date: z.string().nullable().default(null),
+    target_date: z.string().nullable().default(null),
+    pic: z.array(z.object({
+        name: z.string().min(1, 'Name is required'),
+        unit: z.string().min(1, 'Unit is required')
+    })).min(1, 'At least one PIC is required'),
     tags: z.array(z.string()).default([]),
 });
 

@@ -12,7 +12,8 @@ import {
 import { ProjectRepository } from '@/repositories/project.repository';
 import { ProjectSectionRepository } from '@/repositories/project-section.repository';
 import { TimelineRepository } from '@/repositories/timeline.repository';
-import { ServiceResult, NotFoundError, ValidationError } from '@/lib/service-result';
+import { ServiceResult } from '@/services/base.service';
+import { NotFoundError, ValidationError, AppError } from '@/lib/errors';
 import { TimelineEventType, TimelineRelatedType } from '@/types/timeline';
 
 export class ProjectService {
@@ -24,7 +25,8 @@ export class ProjectService {
         return { success: true, data };
     }
 
-    private error(error: any): ServiceResult<any> {
+    private error(err: any): ServiceResult<any> {
+        const error = err instanceof AppError ? err : new AppError(err.message || 'Unknown error');
         return { success: false, error };
     }
 
@@ -68,7 +70,7 @@ export class ProjectService {
                 related_type: 'project' as TimelineRelatedType,
                 related_id: project.id,
                 event_date: new Date().toISOString(),
-                event_type: 'status_change' as TimelineEventType,
+                event_type: 'created',
                 description: `Project "${project.name}" created`,
                 actor_id: userId,
                 actor_type: 'user',
@@ -153,7 +155,7 @@ export class ProjectService {
                     related_type: 'project' as TimelineRelatedType,
                     related_id: id,
                     event_date: new Date().toISOString(),
-                    event_type: 'status_change' as TimelineEventType,
+                    event_type: 'status_changed',
                     description: `Project status changed from "${existing.status}" to "${input.status}"`,
                     actor_id: userId,
                     actor_type: 'user',
@@ -185,7 +187,7 @@ export class ProjectService {
                 related_type: 'project' as TimelineRelatedType,
                 related_id: id,
                 event_date: new Date().toISOString(),
-                event_type: 'note_added' as TimelineEventType,
+                event_type: 'deleted',
                 description: `Project "${existing.name}" deleted`,
                 actor_id: userId,
                 actor_type: 'user',
@@ -231,7 +233,7 @@ export class ProjectService {
                     related_type: 'project' as TimelineRelatedType,
                     related_id: project.id,
                     event_date: new Date().toISOString(),
-                    event_type: 'status_change' as TimelineEventType,
+                    event_type: 'status_changed',
                     description: `Section "${section.section_name}" status changed from "${section.status}" to "${input.status}"`,
                     actor_id: userId,
                     actor_type: 'user',

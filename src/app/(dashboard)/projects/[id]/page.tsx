@@ -212,12 +212,18 @@ export default function ProjectDetailPage() {
                                         <option value="completed" className="bg-[#111827]">Completed</option>
                                         <option value="cancelled" className="bg-[#111827]">Cancelled</option>
                                     </select>
-                                    <Input
+                                    <select
                                         value={metaForm.category}
-                                        onChange={e => setMetaForm(prev => ({ ...prev, category: e.target.value }))}
-                                        placeholder="Category"
-                                        className="w-32 h-7 text-xs bg-white/5 border-white/10 text-white"
-                                    />
+                                        onChange={e => setMetaForm(prev => ({ ...prev, category: e.target.value as ProjectCategory }))}
+                                        className="rounded-md bg-white/5 border border-white/10 text-white text-xs px-2 py-1 outline-none"
+                                    >
+                                        <option value="migration" className="bg-[#111827]">Migration</option>
+                                        <option value="access" className="bg-[#111827]">Access</option>
+                                        <option value="integration" className="bg-[#111827]">Integration</option>
+                                        <option value="infrastructure" className="bg-[#111827]">Infrastructure</option>
+                                        <option value="expansion" className="bg-[#111827]">Expansion</option>
+                                        <option value="other" className="bg-[#111827]">Other</option>
+                                    </select>
                                     <select
                                         value={metaForm.priority}
                                         onChange={e => setMetaForm(prev => ({ ...prev, priority: e.target.value as ProjectPriority }))}

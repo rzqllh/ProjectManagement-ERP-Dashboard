@@ -30,7 +30,7 @@ export class NdRepository extends BaseRepository<NdeRecord> {
     }
 
     async findByEscalationStatus(status: 'risk' | 'escalated'): Promise<NdeRecord[]> {
-        return this.findAll({ escalation_status: status });
+        return this.findAll({ escalation_level: status });
     }
 
     async countByStatus(status: NdStatus): Promise<number> {

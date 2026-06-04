@@ -6,8 +6,13 @@ import { Input } from '@/components/ui/input';
 import { CreateProjectInput, ProjectCategory, ProjectPriority, RiskLevel, PicEntry } from '@/types/project';
 import { X, FolderPlus, Plus, Trash2, Bold, Italic, Code } from 'lucide-react';
 
-const CATEGORIES: string[] = [
-    'Migration', 'Access', 'Integration', 'Infrastructure', 'Expansion', 'Other'
+const CATEGORIES: { value: ProjectCategory; label: string }[] = [
+    { value: 'migration', label: 'Migration' },
+    { value: 'access', label: 'Access' },
+    { value: 'integration', label: 'Integration' },
+    { value: 'infrastructure', label: 'Infrastructure' },
+    { value: 'expansion', label: 'Expansion' },
+    { value: 'other', label: 'Other' },
 ];
 
 const PRIORITIES: { value: ProjectPriority; label: string; color: string }[] = [
@@ -34,7 +39,7 @@ export function ProjectForm({ onSubmit, onCancel, loading }: ProjectFormProps) {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        category: 'Migration',
+        category: 'migration' as ProjectCategory,
         priority: 'medium' as ProjectPriority,
         risk_level: 'low' as RiskLevel,
         start_date: new Date().toISOString().split('T')[0],
@@ -142,18 +147,15 @@ export function ProjectForm({ onSubmit, onCancel, loading }: ProjectFormProps) {
             <div className="grid grid-cols-2 gap-4">
                 <div>
                     <label className="block text-xs font-medium text-slate-400 mb-1.5">Category</label>
-                    <div className="relative">
-                        <input
-                            list="categories"
-                            value={formData.category}
-                            onChange={e => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                            placeholder="Select or type..."
-                            className="w-full rounded-md bg-white/5 border border-white/10 text-white text-sm px-3 py-2 outline-none focus:border-caneris-cyan/50 placeholder:text-slate-600"
-                        />
-                        <datalist id="categories">
-                            {CATEGORIES.map(c => <option key={c} value={c} />)}
-                        </datalist>
-                    </div>
+                    <select
+                        value={formData.category}
+                        onChange={e => setFormData(prev => ({ ...prev, category: e.target.value as ProjectCategory }))}
+                        className="w-full rounded-md bg-white/5 border border-white/10 text-white text-sm px-3 py-2 outline-none focus:border-caneris-cyan/50"
+                    >
+                        {CATEGORIES.map(c => (
+                            <option key={c.value} value={c.value} className="bg-[#111827]">{c.label}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label className="block text-xs font-medium text-slate-400 mb-1.5">Priority</label>

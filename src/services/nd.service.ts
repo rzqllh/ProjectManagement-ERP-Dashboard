@@ -4,7 +4,8 @@ import { NdRepository } from '@/repositories/nd.repository';
 import { TimelineRepository } from '@/repositories/timeline.repository';
 import { NdEdgeRepository } from '@/repositories/nd-edge.repository';
 import { StakeholderRepository } from '@/repositories/stakeholder.repository';
-import { ServiceResult, NotFoundError, ValidationError, ConflictError } from '@/lib/service-result';
+import { ServiceResult } from '@/services/base.service';
+import { NotFoundError, ValidationError, ConflictError, AppError } from '@/lib/errors';
 
 // Lazy imports to avoid circular deps
 let _stakeholderService: any = null;
@@ -35,8 +36,9 @@ export class NdService {
         return { success: true, data };
     }
 
-    private error(error: any): ServiceResult<any> {
-        return { success: false, error: error.message || 'Unknown error' };
+    private error(err: any): ServiceResult<any> {
+        const error = err instanceof AppError ? err : new AppError(err.message || 'Unknown error');
+        return { success: false, error };
     }
 
     /**

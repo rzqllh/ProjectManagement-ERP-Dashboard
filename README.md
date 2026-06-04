@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OpsPilot — AI-Powered Project Control & Evidence Workspace
 
-## Getting Started
+OpsPilot is a Personal PMO ERP Control Center, built as a highly structured, strict data-model application. It is designed to trace project dependencies, escalate risks intelligently, and maintain an immutable chain of operational evidence.
 
-First, run the development server:
+## Current State: Phase 0A Core Reliability Baseline
+
+This repository has been locked down as a flagship portfolio project.
+
+**What is currently implemented:**
+- Next.js App Router foundation
+- Firebase Firestore & Auth integration points
+- Strict Zod data contracts for Projects, ND Records, and Decisions
+- Service layer separating business logic from UI
+- Timeline and Activity Tracking baseline
+
+**What is NOT YET implemented (Do not assume these exist):**
+- Real Auth / RBAC (currently mocked to 'system' user)
+- Document Generation
+- AI / RAG Integration
+- Telegram Bot
+- Advanced Graph Traversals
+
+## Development Guidelines
+
+All developers and agents MUST read the reference documents in `DOCS/` before making changes:
+- `DEV_API_CONTRACT.md` - API standard format
+- `DEV_COMPONENT_PATTERNS.md` - React and Tailwind patterns
+- `DEV_ERROR_CONTRACT.md` - Single-source-of-truth ServiceResult and AppErrors
+- `DEV_MOTION.md` - Animation rules
+- `DEV_TOKENIZATION.md` - Design token usage
+- `DEV_TRACKER.md` - Timeline taxonomy rules
+
+## Running the Project
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## License
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

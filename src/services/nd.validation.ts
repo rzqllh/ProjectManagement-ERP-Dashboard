@@ -21,7 +21,7 @@ export const updateNdSchema = createNdSchema.partial();
 
 export const ndFilterSchema = z.object({
     status: z.enum(['waiting_external', 'waiting_internal', 'drafting', 'issued', 'clear', 'escalated']).optional(),
-    escalation_status: z.enum(['risk', 'escalated', 'none']).optional(),
+    escalation_level: z.enum(['risk', 'escalated', 'none']).optional(),
     category: z.string().optional(),
     project_id: z.string().optional(),
     pic: z.string().optional(),

@@ -32,7 +32,7 @@ export async function PATCH(
         const validatedData = updateProjectSchema.parse(body);
 
         const userId = 'system';
-        const result = await projectService.updateProject(id, validatedData as any, userId);
+        const result = await projectService.updateProject(id, validatedData, userId);
         if (!result.success) throw result.error;
 
         return successResponse(result.data);

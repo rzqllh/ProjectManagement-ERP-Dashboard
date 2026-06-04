@@ -14,7 +14,7 @@ export async function GET(
     try {
         const { id } = await params;
         const result = await ndService.getRelations(id);
-        if (!result.success) throw new Error(result.error);
+        if (!result.success) throw result.error;
         return successResponse(result.data);
     } catch (error) {
         return errorResponse(error);
@@ -41,7 +41,7 @@ export async function POST(
         }
 
         const result = await ndService.addRelation(id, targetId, type as EdgeRelationshipType, userId || 'system');
-        if (!result.success) throw new Error(result.error);
+        if (!result.success) throw result.error;
 
         return successResponse(result.data);
     } catch (error) {
@@ -66,7 +66,7 @@ export async function DELETE(
         if (!edgeId) throw new Error("Missing edgeId query parameter");
 
         const result = await ndService.removeRelation(edgeId, userId);
-        if (!result.success) throw new Error(result.error);
+        if (!result.success) throw result.error;
 
         return successResponse({ deleted: true });
     } catch (error) {

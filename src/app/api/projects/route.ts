@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         const validatedData = createProjectSchema.parse(body);
 
         const userId = 'system';
-        const result = await projectService.createProject(validatedData as any, userId);
+        const result = await projectService.createProject(validatedData, userId);
         if (!result.success) throw result.error;
 
         return successResponse(result.data, 201);

@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
         const { searchParams } = new URL(request.url);
         const filters = {
             status: searchParams.get('status') || undefined,
-            escalation_status: searchParams.get('escalation_status') || undefined,
+            escalation_level: searchParams.get('escalation_level') || searchParams.get('escalation_status') || undefined,
             category: searchParams.get('category') || undefined,
             project_id: searchParams.get('project_id') || undefined,
             pic: searchParams.get('pic') || undefined,

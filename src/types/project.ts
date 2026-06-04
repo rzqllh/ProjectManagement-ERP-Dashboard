@@ -1,7 +1,7 @@
 import { BaseEntity } from './base';
 
 export type ProjectStatus = 'active' | 'hold' | 'completed' | 'cancelled';
-export type ProjectCategory = string; // Free-text
+export type ProjectCategory = 'migration' | 'access' | 'integration' | 'infrastructure' | 'expansion' | 'other';
 export type ProjectPriority = 'low' | 'medium' | 'high' | 'critical';
 export type RiskLevel = 'low' | 'medium' | 'high' | 'critical';
 

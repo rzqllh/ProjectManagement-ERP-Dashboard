@@ -1,7 +1,8 @@
 import { Decision, CreateDecisionInput, UpdateDecisionInput } from '@/types/decision';
 import { DecisionRepository } from '@/repositories/decision.repository';
 import { TimelineRepository } from '@/repositories/timeline.repository';
-import { ServiceResult, NotFoundError, ValidationError } from '@/lib/service-result';
+import { ServiceResult } from '@/services/base.service';
+import { NotFoundError, ValidationError, AppError } from '@/lib/errors';
 import { TimelineEventType, TimelineRelatedType } from '@/types/timeline';
 
 export class DecisionService {
@@ -12,7 +13,8 @@ export class DecisionService {
         return { success: true, data };
     }
 
-    private error(error: any): ServiceResult<any> {
+    private error(err: any): ServiceResult<any> {
+        const error = err instanceof AppError ? err : new AppError(err.message || 'Unknown error');
         return { success: false, error };
     }
 

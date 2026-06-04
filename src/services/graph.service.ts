@@ -2,8 +2,8 @@ import { NdEdgeRepository } from '@/repositories/nd-edge.repository';
 import { NdRepository } from '@/repositories/nd.repository';
 import { NdEdge, NodeType, EdgeRelationshipType, EdgeOrigin } from '@/types/nd';
 import { GraphNode, GraphEdge, GraphData, ImpactRadius, BlockChain, CreateEdgeInput } from '@/types/graph';
-import { NotFoundError } from '@/lib/errors';
-import { ServiceResult } from '@/lib/service-result';
+import { NotFoundError, AppError } from '@/lib/errors';
+import { ServiceResult } from '@/services/base.service';
 
 // Lazy imports to avoid circular deps
 let _decisionRepo: any = null;
@@ -45,8 +45,9 @@ export class GraphService {
         return { success: true, data };
     }
 
-    private error(error: any): ServiceResult<any> {
-        return { success: false, error: error.message || 'Unknown error' };
+    private error(err: any): ServiceResult<any> {
+        const error = err instanceof AppError ? err : new AppError(err.message || 'Unknown error');
+        return { success: false, error };
     }
 
     // ─── Node Projection ───
