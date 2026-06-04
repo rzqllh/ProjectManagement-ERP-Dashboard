@@ -1,0 +1,9 @@
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:4000
+- Network:       http://192.168.88.32:4000
+- Environments: .env.local
+
+Γ£ô Starting...
+Γ¿» Unable to acquire lock at C:\Users\Hafizh Rizqullah\Documents\Code\PMO-ERP-Project\.next\dev\lock, is another instance of next dev running?
+  Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h

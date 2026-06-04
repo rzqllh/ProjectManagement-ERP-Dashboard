@@ -1,0 +1,94 @@
+Kamu adalah coding agent yang akan membantu mereview, merapikan, dan mengembangkan project existing saya menjadi portfolio flagship fullstack engineer.
+
+Project ini adalah platform PMO/ERP internal yang akan diarahkan menjadi:
+
+**AI-powered PMO Workspace**
+Sebuah aplikasi fullstack untuk tracking proyek, manajemen dokumen operasional, document generator, dan AI knowledge base berbasis dokumen proyek.
+
+Sebelum melakukan perubahan kode apa pun, ikuti aturan ini:
+
+1. Jangan langsung rewrite besar-besaran.
+2. Jangan menghapus fitur existing tanpa alasan teknis yang jelas.
+3. Jangan membuat asumsi arsitektur tanpa membaca struktur project terlebih dahulu.
+4. Jangan menambahkan dependency baru kalau fitur masih bisa dibuat dengan stack existing.
+5. Prioritaskan stability, maintainability, dan portfolio-readiness.
+6. Semua perubahan harus incremental, bisa direview, dan tidak merusak fitur lama.
+7. Kalau menemukan bug, duplikasi, dead code, atau security issue, catat dulu sebelum memperbaiki.
+8. Jangan membuat fitur halu yang tidak tersambung ke data model atau flow aplikasi.
+9. Ikuti prinsip DRY, KISS, single source of truth, typed code, dan reusable components.
+10. Output setiap task harus menyertakan ringkasan perubahan, file yang diubah, risiko, dan next step.
+
+Baca terlebih dahulu file guideline berikut jika tersedia:
+
+- `02_AGENTS.md`
+- `00_PROJECT_REVIEW.md`
+- `03_ARCHITECTURE_GUIDELINES.md`
+- `05_DATA_AUTH_SECURITY_GUIDELINES.md`
+- `06_DOCUMENT_AI_KNOWLEDGE_GUIDELINES.md`
+- `07_ROADMAP_AND_BACKLOG.md`
+- `10_IMPLEMENTATION_CHECKLIST.md`
+
+Setelah membaca guideline, lakukan **static audit awal** terhadap project.
+
+Fokus audit awal:
+
+## 1. Project Structure
+- Jelaskan struktur folder utama.
+- Identifikasi framework, routing, state management, service layer, repository layer, dan config utama.
+- Tandai area yang sudah rapi dan area yang perlu dirapikan.
+
+## 2. Existing Feature Mapping
+Petakan fitur existing yang sudah ada, khususnya:
+- dashboard
+- project/task tracking
+- ND/decision/stakeholder/graph module
+- AI Brain
+- Telegram integration
+- settings
+- Firebase integration
+- auth-related files
+- API routes/server actions
+
+## 3. Auth, RBAC, and Data Scope
+Cari:
+- apakah auth sudah divalidasi server-side
+- apakah masih ada hardcoded user seperti `system`
+- apakah data sudah scoped by user/workspace/project
+- apakah role dan permission sudah tersedia atau belum
+- potensi security issue
+
+## 4. Architecture Risk
+Identifikasi risiko arsitektur:
+- duplicate logic
+- inconsistent API pattern
+- mixed client/server responsibility
+- weak validation
+- unclear data ownership
+- missing error handling
+- missing loading/empty/error states
+
+## 5. Portfolio Gap
+Nilai apakah project ini sudah layak ditampilkan sebagai portfolio fullstack.
+Cari gap pada:
+- README
+- live demo readiness
+- database explanation
+- architecture explanation
+- screenshots/demo flow
+- feature completeness
+- testing
+- deployment documentation
+
+## 6. Recommended Next Steps
+Berikan prioritas perbaikan dalam format:
+
+- P0: wajib sebelum lanjut fitur
+- P1: penting untuk portfolio
+- P2: improvement
+- P3: nice-to-have
+
+Jangan melakukan perubahan kode dulu pada task pertama ini.
+Output hanya berupa audit report dalam format Markdown.
+
+Gunakan bahasa yang jelas, teknis, dan tidak berlebihan.
+Kalau ada informasi yang belum bisa dipastikan dari kode, tulis sebagai `Unconfirmed` dan jelaskan file mana yang perlu dicek berikutnya.
